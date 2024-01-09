@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:qwer_english/constants/colorset.dart';
 
 enum CardStatus { front, back }
 
 class CustomCard extends StatelessWidget {
   // TODO: Phrase phrase;
   // TODO: Get Random Gradient Colorset
+
+  String front = "너 정말 멋있다~";
+  String back = "You are so cool~";
+
   int index;
   CardStatus status;
 
@@ -14,7 +19,10 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Text(index.toString()),
+      child: Text(
+        this.status == CardStatus.front ? front : back,
+        style: TextStyle(fontSize: 30, color: Colors.white),
+      ),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -26,8 +34,8 @@ class CustomCard extends StatelessWidget {
         ],
         border: Border.all(color: Colors.transparent),
         borderRadius: BorderRadius.circular(10),
-        color: Colors.green,
-      ), // TODO: 그라데이션, 여러 색상 조합 셋 만들어놓기
+        gradient: Gradients.sets[index],
+      ),
     );
   }
 }
