@@ -13,16 +13,12 @@ class CustomCard extends StatelessWidget {
   int index;
   CardStatus status;
 
-  CustomCard({required this.index, required this.status});
+  CustomCard({super.key, required this.index, required this.status});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Text(
-        this.status == CardStatus.front ? front : back,
-        style: TextStyle(fontSize: 30, color: Colors.white),
-      ),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -35,6 +31,20 @@ class CustomCard extends StatelessWidget {
         border: Border.all(color: Colors.transparent),
         borderRadius: BorderRadius.circular(10),
         gradient: Gradients.sets[index],
+      ),
+      child: Text(
+        status == CardStatus.front ? front : back,
+        style: status == CardStatus.front
+            ? const TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+                fontFamily: 'NanumGothicBold',
+              )
+            : const TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+                fontFamily: 'TommySoftBold',
+              ),
       ),
     );
   }

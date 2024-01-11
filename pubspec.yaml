@@ -20,3 +20,18 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/fonts/
+  fonts:
+    - family: NanumGothic
+      fonts:
+        - asset: assets/fonts/NanumGothic.otf
+    - family: NanumGothicBold
+      fonts:
+        - asset: assets/fonts/NanumGothicBold.otf
+    - family: TommySoft
+      fonts:
+        - asset: assets/fonts/Tommy-Soft-Regular.otf
+    - family: TommySoftBold
+      fonts:
+        - asset: assets/fonts/Tommy-Soft-Bold.otf
