@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:qwer_english/bindings/initial_bindings.dart';
 
-import 'views/index_page.dart';
+import 'pages/index_page.dart';
 
 void main() {
   InitialBinding().dependencies();
