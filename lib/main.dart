@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:qwer_english/bindings/initial_bindings.dart';
+import 'package:qwer_english/pages/splash_page.dart';
 
 import 'pages/index_page.dart';
 
@@ -15,9 +16,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/',
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/splash',
       getPages: [
-        GetPage(name: '/', page: () => IndexPage()),
+        GetPage(name: '/splash', page: () => SplashPage()),
+        GetPage(name: '/index', page: () => IndexPage()),
       ],
     );
   }

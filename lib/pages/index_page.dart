@@ -1,6 +1,8 @@
 import 'package:appinio_swiper/appinio_swiper.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:qwer_english/controllers/index_controller.dart';
 import 'widgets/card.dart';
 
 enum Direction { left, right, center }
@@ -11,6 +13,7 @@ class IndexPage extends StatefulWidget {
 }
 
 class _IndexPageState extends State<IndexPage> {
+  final IndexController controller = Get.find<IndexController>();
   Direction swipeDirection = Direction.center;
 
   @override
@@ -34,7 +37,7 @@ class _IndexPageState extends State<IndexPage> {
               height: MediaQuery.of(context).size.height * 0.6,
               width: MediaQuery.of(context).size.width * 0.9,
               child: AppinioSwiper(
-                cardCount: 10,
+                cardCount: controller.phrases.length,
                 onSwipeBegin: (previousIndex, targetIndex, activity) {
                   setState(() {
                     print('$swipeDirection'); // TODO: 여기서 이벤트 처리
@@ -58,8 +61,12 @@ class _IndexPageState extends State<IndexPage> {
                 },
                 cardBuilder: (BuildContext context, int index) {
                   return FlipCard(
-                    front: CustomCard(index: index, status: CardStatus.front),
-                    back: CustomCard(index: index, status: CardStatus.back),
+                    front: CustomCard(
+                        phrase: controller.phrases[index],
+                        status: CardStatus.front),
+                    back: CustomCard(
+                        phrase: controller.phrases[index],
+                        status: CardStatus.back),
                   );
                 },
               ),

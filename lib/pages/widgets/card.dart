@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:qwer_english/constants/colorset.dart';
+import 'package:qwer_english/models/phrase.dart';
 
 enum CardStatus { front, back }
 
 class CustomCard extends StatelessWidget {
-  // TODO: Phrase phrase;
-  // TODO: Get Random Gradient Colorset
-
-  String front = "너 정말 멋있다~";
-  String back = "You are so cool~";
-
-  int index;
+  Phrase phrase;
   CardStatus status;
 
-  CustomCard({super.key, required this.index, required this.status});
+  CustomCard({super.key, required this.phrase, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +25,10 @@ class CustomCard extends StatelessWidget {
         ],
         border: Border.all(color: Colors.transparent),
         borderRadius: BorderRadius.circular(10),
-        gradient: Gradients.sets[index],
+        gradient: Gradients.sets[phrase.id % 10],
       ),
       child: Text(
-        status == CardStatus.front ? front : back,
+        status == CardStatus.front ? phrase.kor : phrase.eng,
         style: status == CardStatus.front
             ? const TextStyle(
                 fontSize: 30,

@@ -61,7 +61,7 @@ class MainService extends GetxService {
   Future<void> onAppLoad() async {
     final controller = Get.find<IndexController>();
     if (environ.env == Env.test) {
-      Timer(const Duration(seconds: 3), () {
+      await Future.delayed(const Duration(seconds: 3), () {
         controller.fetchData(testData);
       });
     } else {
