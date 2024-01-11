@@ -8,6 +8,6 @@ class IndexController extends GetxController {
     phrases = data;
   }
 
-  // isDone => True via sqlite_helper update
+  // TODO: isDone => True via sqlite_helper update
   void updateData(int id) {}
 }

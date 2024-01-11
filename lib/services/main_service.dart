@@ -65,7 +65,8 @@ class MainService extends GetxService {
         controller.fetchData(testData);
       });
     } else {
-      //
+      // TODO: Fetch Data from sqlite via sqlite_helper
+      // Data: select * from table where isDone = false; [0:10]
     }
   }
 }
