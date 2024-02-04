@@ -42,7 +42,8 @@ class _IndexPageState extends State<IndexPage> {
                   setState(() {
                     print('$targetIndex, $swipeDirection');
                     if (swipeDirection == Direction.left) {
-                      controller.updateData(controller.phrases[targetIndex]);
+                      controller
+                          .updateData(controller.phrases[targetIndex - 1]);
                     } else if (swipeDirection == Direction.right) {}
                     swipeDirection = Direction.center;
                   });

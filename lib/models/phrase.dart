@@ -28,4 +28,8 @@ class Phrase {
       'isDone': isDone == true ? 1 : 0,
     };
   }
+
+  Phrase copyWith({bool? isDone}) {
+    return Phrase(id: id, kor: kor, eng: eng, isDone: isDone ?? this.isDone);
+  }
 }

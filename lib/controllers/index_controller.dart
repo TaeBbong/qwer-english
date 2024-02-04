@@ -10,9 +10,8 @@ class IndexController extends GetxController {
     phrases = data;
   }
 
-  // TODO: isDone => True via sqlite_helper update
   void updateData(Phrase phrase) async {
     final service = Get.find<MainService>();
-    await SqliteHelper(db: service.db).update(phrase);
+    await SqliteHelper(db: service.db).update(phrase.copyWith(isDone: true));
   }
 }
