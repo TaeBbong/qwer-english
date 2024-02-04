@@ -40,7 +40,10 @@ class _IndexPageState extends State<IndexPage> {
                 cardCount: controller.phrases.length,
                 onSwipeBegin: (previousIndex, targetIndex, activity) {
                   setState(() {
-                    print('$swipeDirection'); // TODO: 여기서 이벤트 처리
+                    print('$targetIndex, $swipeDirection');
+                    if (swipeDirection == Direction.left) {
+                      controller.updateData(controller.phrases[targetIndex]);
+                    } else if (swipeDirection == Direction.right) {}
                     swipeDirection = Direction.center;
                   });
                 },

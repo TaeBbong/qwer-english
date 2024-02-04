@@ -1,5 +1,5 @@
 enum Env { dev, prod, test }
 
 class Environ {
-  Env env = Env.test;
+  Env env = Env.dev;
 }

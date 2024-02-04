@@ -1,9 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:qwer_english/controllers/index_controller.dart';
 import 'package:qwer_english/env.dart';
+import 'package:qwer_english/helpers/sqlite_helper.dart';
 import 'package:qwer_english/models/phrase.dart';
+import 'package:sqflite/sqflite.dart';
 
 class MainService extends GetxService {
   List<Phrase> testData = [
@@ -57,6 +62,8 @@ class MainService extends GetxService {
     ),
   ];
   Environ environ = Environ();
+  late Database db;
+  List<Phrase> data = [];
 
   Future<void> onAppLoad() async {
     final controller = Get.find<IndexController>();
@@ -65,8 +72,26 @@ class MainService extends GetxService {
         controller.fetchData(testData);
       });
     } else {
-      // TODO: Fetch Data from sqlite via sqlite_helper
+      final String dbpath = join(await getDatabasesPath(), 'phrase.db');
+      final bool exists = await databaseExists(dbpath);
+
+      if (!exists) {
+        try {
+          await Directory(dirname(dbpath)).create(recursive: true);
+        } catch (_) {}
+        ByteData data = await rootBundle.load(join("assets", "phrase_init.db"));
+        List<int> bytes =
+            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+        await File(dbpath).writeAsBytes(bytes, flush: true);
+      }
+
+      db = await openDatabase(dbpath);
       // Data: select * from table where isDone = false; [0:10]
+      data = await SqliteHelper(db: db).fetchAll();
+      if (data.length > 10) {
+        data = data.sublist(0, 10);
+      }
+      controller.fetchData(data);
     }
   }
 }

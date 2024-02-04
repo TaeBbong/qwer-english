@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:qwer_english/helpers/sqlite_helper.dart';
 import 'package:qwer_english/models/phrase.dart';
+import 'package:qwer_english/services/main_service.dart';
 
 class IndexController extends GetxController {
   List<Phrase> phrases = [];
@@ -9,5 +11,8 @@ class IndexController extends GetxController {
   }
 
   // TODO: isDone => True via sqlite_helper update
-  void updateData(int id) {}
+  void updateData(Phrase phrase) async {
+    final service = Get.find<MainService>();
+    await SqliteHelper(db: service.db).update(phrase);
+  }
 }

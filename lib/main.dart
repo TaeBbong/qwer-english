@@ -6,6 +6,7 @@ import 'package:qwer_english/pages/splash_page.dart';
 import 'pages/index_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   InitialBinding().dependencies();
   runApp(const MainApp());
 }

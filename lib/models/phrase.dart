@@ -16,7 +16,7 @@ class Phrase {
       id: data['id'],
       kor: data['kor'],
       eng: data['eng'],
-      isDone: data['isDone'],
+      isDone: data['isDone'] == 0 ? false : true,
     );
   }
 
@@ -25,7 +25,7 @@ class Phrase {
       'id': id,
       'kor': kor,
       'eng': eng,
-      'isDone': isDone,
+      'isDone': isDone == true ? 1 : 0,
     };
   }
 }

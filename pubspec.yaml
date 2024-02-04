@@ -12,16 +12,17 @@ dependencies:
   get:
   appinio_swiper: ^2.1.0
   flip_card: ^0.7.0
+  sqflite: ^2.3.0
+  path: ^1.9.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
   flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
   assets:
     - assets/fonts/
+    - assets/phrase_init.db
   fonts:
     - family: NanumGothic
       fonts:
