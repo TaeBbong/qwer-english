@@ -88,9 +88,7 @@ class MainService extends GetxService {
       db = await openDatabase(dbpath);
       // Data: select * from table where isDone = false; [0:10]
       data = await SqliteHelper(db: db).fetchAll();
-      if (data.length > 10) {
-        data = data.sublist(0, 10);
-      }
+      data.shuffle();
       controller.fetchData(data);
     }
   }

@@ -36,44 +36,48 @@ class _IndexPageState extends State<IndexPage> {
             Container(
               height: MediaQuery.of(context).size.height * 0.6,
               width: MediaQuery.of(context).size.width * 0.9,
-              child: AppinioSwiper(
-                cardCount: controller.phrases.length,
-                onSwipeBegin: (previousIndex, targetIndex, activity) {
-                  setState(() {
-                    print('$targetIndex, $swipeDirection');
-                    if (swipeDirection == Direction.left) {
-                      controller
-                          .updateData(controller.phrases[targetIndex - 1]);
-                    } else if (swipeDirection == Direction.right) {}
-                    swipeDirection = Direction.center;
-                  });
-                },
-                onCardPositionChanged: (position) {
-                  if (position.offset.dx < -50) {
-                    setState(() {
-                      swipeDirection = Direction.left;
-                    });
-                  } else if (position.offset.dx > 50) {
-                    setState(() {
-                      swipeDirection = Direction.right;
-                    });
-                  } else {
-                    setState(() {
-                      swipeDirection = Direction.center;
-                    });
-                  }
-                },
-                cardBuilder: (BuildContext context, int index) {
-                  return FlipCard(
-                    front: CustomCard(
-                        phrase: controller.phrases[index],
-                        status: CardStatus.front),
-                    back: CustomCard(
-                        phrase: controller.phrases[index],
-                        status: CardStatus.back),
-                  );
-                },
-              ),
+              child: controller.phrases.isNotEmpty
+                  ? AppinioSwiper(
+                      cardCount: controller.phrases.length,
+                      onSwipeBegin: (previousIndex, targetIndex, activity) {
+                        setState(() {
+                          print('$targetIndex, $swipeDirection');
+                          if (swipeDirection == Direction.left) {
+                            controller.updateData(
+                                controller.phrases[targetIndex - 1]);
+                          } else if (swipeDirection == Direction.right) {}
+                          swipeDirection = Direction.center;
+                        });
+                      },
+                      onCardPositionChanged: (position) {
+                        if (position.offset.dx < -50) {
+                          setState(() {
+                            swipeDirection = Direction.left;
+                          });
+                        } else if (position.offset.dx > 50) {
+                          setState(() {
+                            swipeDirection = Direction.right;
+                          });
+                        } else {
+                          setState(() {
+                            swipeDirection = Direction.center;
+                          });
+                        }
+                      },
+                      cardBuilder: (BuildContext context, int index) {
+                        return FlipCard(
+                          front: CustomCard(
+                              phrase: controller.phrases[index],
+                              status: CardStatus.front),
+                          back: CustomCard(
+                              phrase: controller.phrases[index],
+                              status: CardStatus.back),
+                        );
+                      },
+                    )
+                  : Center(
+                      child: Text('더 이상 공부할 문장이 없습니다!',
+                          style: TextStyle(fontSize: 20))),
             ),
             Container(
               height: MediaQuery.of(context).size.height * 0.2,
