@@ -3,6 +3,7 @@ linux/
 macos/
 web/
 windows/
+AppIcons/
 
 # pub
 pubspec.lock
